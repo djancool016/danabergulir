@@ -1,6 +1,5 @@
 <script type="text/javascript">
 	var _kode = ["", "<?php echo $code_pinj; ?>", "<?php echo $code_tab; ?>", "<?php echo $code_lain; ?>"];
-
 	function load_register(){
 		$.ajax({
 			url: "<?php echo base_url(); ?>content/controller/bukti.php?halaman=get_register&id_ksm=" + $("#id_ksm").val() + "&id_register=" + $("#type").val(),
@@ -54,6 +53,12 @@
 				$("#lainnya-container").show();	
 			}
 		});
+
+		$("#frm_akun3").change(function(){
+			$("#remark").val($("#frm_akun3 option:selected").text().slice(8,))
+			
+		});
+
 
 		$("#id_ksm").change(function(){
 			$("#other_ksm").val('');

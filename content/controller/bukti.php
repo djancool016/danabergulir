@@ -24,9 +24,15 @@
 		$code_pinj = generate_code("pinjaman");
 		$code_lain = generate_code("lainnya");
 
+
 		require_once("../view/dashboard.php");
 	}
 	
+	// function baseLoan($idksm){
+	// 	$loan = get_loan($idksm);
+	// 	$base = $loan["loan_total"]/$loan["loan_duration"];
+	// 	return $base;
+	// }
 
 	if($_GET['halaman'] == "save_kas"){
 		if(($_POST['tahun'] < get_last_accperiod()) or !get_last_accperiod()){

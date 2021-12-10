@@ -32,7 +32,7 @@
 			}
 		});
 
-		$("#loan_duration").keyup(function(){
+		$("#loan_total,#loan_duration").keyup(function(){
 			if($("#loan_total").val() && $("#loan_duration").val()){
 				$("#angsuran_pokok").val(parseInt($("#loan_total").val() / $("#loan_duration").val()));
 
@@ -53,7 +53,7 @@
 		});
 
 		
-		$("#loan_interest").keyup(function(){
+		$("#loan_total,#loan_interest").keyup(function(){
 			var _total = $("#angsuran_pokok").val();
 				_total = _total.replace(/\./g, '');
 				_total = _total.replace(/\,/g, '.');
@@ -73,7 +73,7 @@
 			
 		});
 
-		$("#form-pinjaman").submit(function(){
+		$("#loan_total,#form-pinjaman").submit(function(){
 			if($("#loan_total").val() == ""){
 				alert('"Besar Pinjaman" masih kosong !');
 				$("#loan_total").focus();
@@ -151,7 +151,7 @@
 				<input type="text" value="<?php echo $code; ?>" name="loan_no" readonly="readonly">
 			</td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<td style="padding:0 25px 10px 25px; width:15%; font-size:18px;" colspan="2">Pinjaman Ke</td>
 			<td style="font-size:13px; padding:0 26px 10px 42px; width:67.5%;" colspan="6">
 				<select name="loan_ke">
@@ -161,7 +161,7 @@
 					<option value="4">4</option>
 				</select>
 			</td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td style="padding:0 25px 10px 25px; width:15%; font-size:18px;" colspan="2">Besar Pinjaman</td>
 			<td style="font-size:13px; padding:0 26px 10px 42px; width:67.5%;" colspan="6">
@@ -171,7 +171,7 @@
 		<tr>
 			<td style="padding:0 25px 10px 25px; width:15%; font-size:18px;" colspan="2">Waktu Pinjaman (bulan)</td>
 			<td style="font-size:13px; padding:0 26px 10px 42px; width:67.5%;" colspan="6">
-				<input type="text" class="count span6 auto" id="loan_duration" name="loan_duration" placeholder="(bulan)" data-a-sep="." data-a-dec="," style="width:220px;">
+				<input type="text" class="count span6 auto" id="loan_duration" name="loan_duration" placeholder="(bulan)" data-a-sep="." data-a-dec="," style="width:220px; " value="12">
 			</td>
 		</tr>
 		<tr>
@@ -183,7 +183,7 @@
 		<tr>
 			<td style="padding:0 25px 10px 25px; width:15%; font-size:18px;" colspan="2">Bunga Pinjaman (% per tahun)</td>
 			<td style="font-size:13px; padding:0 26px 10px 42px; width:67.5%;" colspan="6">
-				<input type="text" class="count span6" id="loan_interest" name="loan_interest" placeholder="%" data-a-sep="." data-a-dec="," style="width:220px;">
+				<input type="text" class="count span6" id="loan_interest" name="loan_interest" placeholder="%" data-a-sep="." data-a-dec="," style="width:220px;" value="18,00">
 			</td>
 		</tr>
 		<tr>

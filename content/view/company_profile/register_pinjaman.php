@@ -63,7 +63,7 @@
 						<td style="text-align:center; color:#fff; padding:0 0 20px 0;" width="12%">DATA KSM</td>
 						<td style="text-align:center; color:#fff; padding:0 0 20px 0;" width="12%">NO KSM</td>
 						<td style="text-align:center; color:#fff; padding:0 0 20px 0;" width="17%">TANGGAL REALISASI</td>
-						<td style="text-align:center; color:#fff; padding:0 0 20px 0;" width="12%">PINJAMAN KE</td>
+						<!-- <td style="text-align:center; color:#fff; padding:0 0 20px 0;" width="12%">PINJAMAN KE</td> -->
 						<td style="text-align:center; color:#fff; padding:0 0 20px 0;" width="12%">PINJAMAN POKOK</td>
 						<td style="text-align:center; color:#fff; padding:15px 0 15px 0;" width="12%">JASA<BR>(%)</td>
 						<td style="text-align:center; color:#fff; padding:15px 0 15px 0;" width="12%">JANGKA WAKTU<BR>(BULAN)</td>
@@ -91,7 +91,7 @@
 									$total += $b[loan_total];
 								?>
 							</td>
-							<td align="center" width="12%"><?php echo $no_urut[$b['id_ksm']]--; ?></td>
+							<!-- <td align="center" width="12%"><?php echo $no_urut[$b['id_ksm']]--; ?></td> -->
 							<td align="center" width="12%"><?php echo decimal($b[loan_total]); ?></td>
 							<td align="center" width="12%"><?php echo decimal($b[loan_interest], 2); ?></td>
 							<td align="center" width="12%"><?php echo $b[loan_duration]; ?></td>

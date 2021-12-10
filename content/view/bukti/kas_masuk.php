@@ -46,11 +46,13 @@
 				$("#pinjaman-container").show();
 				$("#simpanan-container").hide();
 				$("#lainnya-container").hide();	
+				$("#remark").val("Angsuran Pokok dan Bunga KSM "+$("#id_ksm option:selected").text());
 			}
 			if($(this).val() == "2"){
 				$("#pinjaman-container").hide();
 				$("#simpanan-container").show();
 				$("#lainnya-container").hide();	
+				$("#remark").val("Titipan BOP KSM "+$("#id_ksm option:selected").text());
 			}
 			if($(this).val() == "3"){
 				$("#pinjaman-container").hide();
@@ -79,7 +81,6 @@
 				$("#type").focus();
 				return false;			
 			}
-
 			
 			if($("#remark").val() == ""){
 				alert('"Untuk realisasi pembayaran" masih kosong !');
@@ -110,8 +111,11 @@
 				return false;			
 			}
 
+			
+
 		});
 	});
+
 </script>
 
 <div class="content">  

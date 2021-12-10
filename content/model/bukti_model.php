@@ -42,6 +42,16 @@
 		return $sql['loan_no'];
 	}
 
+	// function get_loan($id_ksm = ''){
+	// 	$sql = "SELECT a.*,
+	// 				   a.loan_start AS akad_date,
+	// 				   (SELECT transaction_date FROM tr_debit_credit WHERE id = a.id_initial_loan) AS loan_start, 
+	// 				   b.name FROM ms_loan a LEFT JOIN ms_ksm b ON a.id_ksm = b.id WHERE a.id_ksm = ? AND is_finish = ?"; 
+	// 	$sql = query($sql, array($id_ksm, 0));
+
+	// 	return mysql_fetch_array($sql);
+	// }
+
 	function save_transaction($param = array()){
 		$sql = "INSERT INTO tr_debit_credit (`id_ksm`,
 											 `id_lkm`,
