@@ -55,7 +55,12 @@
 		});
 
 		$("#frm_akun3").change(function(){
-			$("#remark").val($("#frm_akun3 option:selected").text().slice(8,))
+			if($("#id_ksm option:selected").text() == "Lainnya"){
+				$("#remark").val($("#frm_akun3 option:selected").text().slice(8,))
+			}else{
+				$("#remark").val($("#frm_akun3 option:selected").text().slice(8,)+" "+$("#id_ksm option:selected").text())
+			}
+			
 			
 		});
 

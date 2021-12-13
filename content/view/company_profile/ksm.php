@@ -24,7 +24,7 @@
 			<td style="font-weight:bold; font-size:12px; padding:5px 8px 10px 8px; width:15%; text-align:center;">Nama KSM</td>
 			<td style="font-weight:bold; font-size:12px; padding:5px 8px 10px 8px; width:15%; text-align:center;">Ketua</td>
 			<td style="font-weight:bold; font-size:12px; padding:5px 8px 10px 8px; width:15%; text-align:center;">Alamat</td>
-			<td style="font-weight:bold; font-size:12px; padding:5px 8px 10px 8px; width:15%; text-align:center;">Pinjaman Ke</td>
+			<!-- <td style="font-weight:bold; font-size:12px; padding:5px 8px 10px 8px; width:15%; text-align:center;">Pinjaman Ke</td> -->
 			<td style="font-weight:bold; font-size:12px; padding:5px 8px 10px 8px; width:21%; text-align:center;">AKSI</td>
 		</tr>
 	</table>
@@ -37,7 +37,7 @@
 			<td style="font-weight:bold; font-size:12px; padding:5px 8px 10px 38px; width:15%; text-align:justify;"><?php echo "$b[name]"; ?></td>
 			<td style="font-weight:bold; font-size:12px; padding:5px 8px 10px 38px; width:15%; text-align:justify;"><?php echo "$b[ketua_name]"; ?></td>
 			<td style="font-weight:bold; font-size:12px; padding:5px 8px 10px 8px; width:15%; text-align:center;"><?php echo "$b[address]"; ?></td>
-			<td style="font-weight:bold; font-size:12px; padding:5px 8px 10px 8px; width:15%; text-align:center;"><?php echo "$b[loan_total]"; ?></td>			
+			<!-- <td style="font-weight:bold; font-size:12px; padding:5px 8px 10px 8px; width:15%; text-align:center;"><?php echo "$b[loan_total]"; ?></td>			 -->
 			<td style="font-weight:bold; font-size:12px; padding:5px 8px 10px 8px; width:21%; text-align:center;">
 			<?php if(!$b['loan_total'] and !$b['transaction_number']){ ?>
 				<button onclick="location.href = '<?php echo base_url(); ?>content/controller/dashboard.php?halaman=edit_ksm&edit=<?php echo"$b[id]"; ?>'" class="btn btn-small btn-warning'"><i class="icon-cut"></i></button>
