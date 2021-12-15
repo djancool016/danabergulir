@@ -41,36 +41,33 @@
 				  </div>
 				  <br>
 					
-<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered no-more-tables" id="#" width="100%" >
+<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered no-more-tables" id="table-kas" width="100%" >
   <thead>
     <tr>
-      <th rowspan="2" style="background: #4bd4c9; text-align : center"><div style="margin-top: 15px; color:#fff;"><strong>Tanggal</strong></div></th>
-      <th rowspan="2" style="background: #4bd4c9; text-align : center"><div style="margin-top: 15px; color:#fff;"><strong>Uraian</strong></div></th>
-      <th rowspan="2" style="background: #4bd4c9; text-align : center"><div style="margin-top: 15px; color:#fff;"><strong>No. Bukti</strong></div></th>
-      <th colspan="2" style="background: #4bd4c9; text-align : center"><div style="color:#fff; text-align:center;"><strong>Transaksi</strong></div></th>
-      <th style="background: #4bd4c9; text-align : center"><div style="color:#fff;"><strong>Saldo</strong></div></th>
+      <th style="background: #50aba3; text-align : center"><div style="color:#fff;""><strong>Tanggal<br><span class="label label-warning">1</strong></strong></div></th>
+      <th style="background: #50aba3; text-align : center"><div style="color:#fff;""><strong>Uraian<br><span class="label label-warning">2</strong></strong></div></th>
+      <th style="background: #50aba3; text-align : center"><div style="color:#fff;""><strong>No. Bukti<br><span class="label label-warning">3</strong></strong></div></th>
+      <th style="background: #50aba3; text-align : center"><div style="color:#fff;"><strong>Transaksi <br> Debet<br><span class="label label-warning">4</strong></div></th>
+      <th style="background: #50aba3; text-align : center"><div style="color:#fff;"><strong>Transaksi <br> Kredit<br><span class="label label-warning">5</strong></div></th>
+      <th style="background: #50aba3; text-align : center"><div style="color:#fff;"><strong>Saldo <br> Debet<br><span class="label label-warning">6</strong></div></th>
     </tr>
-    <tr>
-      <th style="background: #50aba3; text-align : center"><div style="color:#fff;"><strong>Debet</strong></div></th>
-      <th style="background: #50aba3; text-align : center"><div style="color:#fff;"><strong>Kredit</strong></div></th>
-      <th style="background: #50aba3; text-align : center"><div style="color:#fff;"><strong>Debet</strong></div></th>
-    </tr>
-    <tr>
-      <td style="text-align : center"><span class="label label-warning"><strong>1</strong></span></td>
-      <td style="text-align : center"><span class="label label-warning"><strong>2</strong></span></td>
-      <td style="text-align : center"><span class="label label-warning"><strong>3</strong></span></td>
-      <td style="text-align : center"><span class="label label-warning"><strong>4</strong></span></td>
-      <td style="text-align : center"><span class="label label-warning"><strong>5</strong></span></td>
-      <td style="text-align : center"><span class="label label-warning"><strong>6</strong></span></td>
+    <tr id="table-kas-header">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
-  
+  <tbody>
+  <?php $saldo_awal = get_saldo_awal(1); ?>
   <?php $saldo = get_saldo_awal(1); ?>
   <tr>
     <td>-</td>
     <td>Saldo Awal</td>
     <td>-</td>
-    <td style="text-align : right"><?php echo decimal($saldo); ?></td>
+    <td style="text-align : right">-</td>
     <td style="text-align : right">-</td>
     <td style="text-align : right"><?php echo decimal($saldo); ?></td>
   </tr>
@@ -78,15 +75,21 @@
   	while ($b = mysql_fetch_array($a)) {
 		$base = decimal($b[base]);
   ?>
-  <tr>
-    <td><?php echo $b["transaction_date"]; ?></td>
-    <td><?php echo $b["remark"]; ?></td>
-    <td><?php echo"$b[no]"; ?></td>
-    <td style="text-align : right"><?php if($b['type'] == "out"){ echo $base; $saldo += $b[base]; }else echo "-"; ?></td>
-    <td style="text-align : right"><?php if($b['type'] == "in"){ echo $base; $saldo -= $b[base]; }else echo "-"; ?></td>
-    <td style="text-align : right"><?php echo decimal($saldo); ?></td>
-  </tr>
-  <?php } ?>
+
+    <tr>
+      <td><?php echo $b["transaction_date"]; ?></td>
+      <td><?php echo $b["remark"]; ?></td>
+      <td><?php echo"$b[no]"; ?></td>
+      <td style="text-align : right"><?php if($b['type'] == "out"){ echo $base; $saldo += $b[base]; }else echo "-"; ?></td>
+      <td style="text-align : right"><?php if($b['type'] == "in"){ echo $base; $saldo -= $b[base]; }else echo "-"; ?></td>
+      <td style="text-align : right"><?php echo decimal($saldo); ?></td>
+    </tr>
+    <?php } ?>
+  </tbody>
+ 
+  <tfoot>
+      <tr><th></th><th></th><th></th><th></th><th></th><th></th></tr>
+  </tfoot>
 </table>
  
             </div>

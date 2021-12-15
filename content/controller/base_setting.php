@@ -4,14 +4,30 @@
 
 	error_reporting(E_ERROR);
 	
-	mysql_connect('localhost', 'root', '');
-	mysql_select_db('cdb1');
+	// //local
+	// mysql_connect('localhost', 'root', '');
+	// mysql_select_db('cdb1');
+	
+	// define('CURRENT_YEAR', date("Y"));
+
+	// function base_url(){
+		
+	// 	return "http://".$_SERVER['SERVER_ADDR']."/danabergulir/";
+	// }
+	// //end local
+
+
+	// ftp
+	mysql_connect('localhost', 'djkm7659_bkmsejahtera', 'bkmsejahteraungaran');
+	mysql_select_db('djkm7659_cdb1');
 	
 	define('CURRENT_YEAR', date("Y"));
 
 	function base_url(){
-		return "http://".$_SERVER['SERVER_ADDR']."/danabergulir/";
+
+		return "https://djkode.site/";
 	}
+	// End ftp
 	
 	function query($sql = '', $param = array()){
 		$array = explode('?', $sql);

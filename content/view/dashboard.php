@@ -275,8 +275,7 @@
 <script type="text/javascript">
   var _globalFormMark = false;
 
-  var table = $('#tabelreport').DataTable(
-    {
+  $('#tabelreport').DataTable({
       "scrollX": true,
       "footerCallback": function ( row, data, start, end, display ) {
         
@@ -331,9 +330,7 @@
               exportOptions: {
                   columns: ':visible'
               },
-              customize: function(win) {
-
-                
+              customize: function(win) {               
                 var body = $(win.document.body).find( 'table tbody' );
                 $(body).append($(body).find('tr:eq(0)').clone());
                 var row = $(body).find('tr').last();
@@ -342,11 +339,98 @@
                 $(row).find('td:eq(5)').html('<h5 style="font-weight: bold">'+total+'</h5>');
               }
           },
-            'colvis'
-                  
-        ]
-        
-    });
+            'colvis'                 
+        ]      
+    }
+  );
+
+  $('#table-kas').DataTable({
+    
+    "footerCallback": function ( row, data, start, end, display ) {
+      var api = this.api(), data;
+
+      // Remove the formatting to get integer data for summation
+      intVal = function ( i ) {
+          return typeof i === 'string' ?
+              i.replace(/[^0-9]/g, '')*1 :
+              typeof i === 'number' ?
+                  i : 0;
+      };
+      
+      // Total over all pages
+      total = function( i ) { 
+        return api
+          .column( i, { search: 'applied'} ).data()
+          .reduce( function (a, b) {
+              return intVal(a) + intVal(b);}, 0 )
+          .toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      };
+      // Total over this page
+      pageTotal = function(i){
+        return api
+          .column( 4, { page: 'current'} ).data()
+          .reduce( function (a, b) {
+              return intVal(a) + intVal(b);}, 0 )
+          .toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      };
+      
+      totalSaldo = function(){
+        var saldo_awal = intVal('<?php echo $saldo_awal?>');
+        return  saldo_awal - (intVal(total(4)) - intVal(total(3)));
+      }
+
+      saldoHeader = function(){
+        var header_debet = intVal(api.column( 3 ).header());
+        var header_kredit = intVal(api.column( 4 ).header());
+        var saldo_awal = intVal('<?php echo $saldo_awal?>');
+        return saldo_awal - (header_debet - header_kredit);
+      }
+
+      totalPindahan = function(){
+        return totalSaldo();
+      }
+      // Update footer
+      $( api.column( 1 ).footer() ).html(
+        '<h5 style="font-weight: bold">Total</h5>'
+      );
+      $( api.column( 3 ).footer() ).html(
+        '<h5 style="font-weight: bold ; text-align : right">'+total(3)+'</h5>'
+      );
+      $( api.column( 4 ).footer() ).html(
+        '<h5 style="font-weight: bold ; text-align : right">'+total(4)+'</h5>'
+      );
+      $( api.column( 5 ).footer() ).html(
+        '<h5 style="font-weight: bold ; text-align : right">'+totalSaldo()+'</h5>'
+      );
+      $( api.column( 5 ).header() ).html(
+        '<h5 style="font-weight: bold ; text-align : right">'+saldoHeader()+'</h5>'
+      );
+},
+    dom: 'Bfrtip',
+        buttons: [
+           {
+              extend: 'print',
+              exportOptions: {
+                  columns: ':visible'
+              },
+              customize: function(win) {     
+                var body = $(win.document.body).find( 'table tbody' );
+                $(body).append($(body).find('tr:eq(0)').clone());
+                var last_row = $(body).find('tr').last();
+                var first_row = $(body).find('tr').first();
+                $(first_row).find('td').text('');    
+                $(first_row).find('td:eq(1)').html('<h5 style="font-weight: bold; text-align: right;">Total    : </h5>');
+                $(first_row).find('td:eq(4)').html('<h5 style="font-weight: bold">'+total(4)+'</h5>');
+                $(last_row).find('td').text('');    
+                $(last_row).find('td:eq(1)').html('<h5 style="font-weight: bold; text-align: right;">Total    : </h5>');
+                $(last_row).find('td:eq(4)').html('<h5 style="font-weight: bold">'+total(4)+'</h5>');
+              }
+           }
+        ],
+    "ordering": false,
+    "paging": false,
+  });
+
 
   $(function(){
       $('form input, form textarea').keyup(function(){
